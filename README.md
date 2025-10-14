@@ -33,7 +33,7 @@ Expected Response:
 On success, returns HTTP 200 or 201 with the updated task details in the response body.
 On failure, returns an appropriate error code and message.
 
-## DELETE Delete - http://localhost:8080/tasks/delete
+## DELETE Delete - http://localhost:8080/tasks/delete/
 
 Deletes a task by its ID. To use this endpoint, provide the task ID in the URL and include the task name in the request body as JSON. This operation will remove the specified task from the system if it exists.
 
