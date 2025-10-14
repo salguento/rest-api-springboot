@@ -26,13 +26,13 @@ public class TaskController {
 	}
 
 	
-	@GetMapping
+	@GetMapping("/listall")
 	public List<Task> list(){
 		return repository.findAll();
 		
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/findbyid/{id}")
 	public ResponseEntity<Task> findById(@PathVariable long id){
 		return repository.findById(id)
 			.map(record -> ResponseEntity.ok().body(record))
@@ -40,14 +40,14 @@ public class TaskController {
 		}
 	
 
-	@PostMapping
+	@PostMapping("/add")
 	public Task create (@RequestBody Task tarefa) {
 		return repository.save(tarefa);
 	}
 	
 	
 	
-	@PutMapping(value = "/{id}")
+	@PutMapping(value = "/update/{id}")
 	public ResponseEntity<Task> update(@PathVariable("id") long id, @RequestBody Task task) {
 		return repository.findById(id).map(record -> {
 			record.setTask(task.getTask());
@@ -59,7 +59,7 @@ public class TaskController {
 			
 		}
 	
-	@DeleteMapping (path = {"/{id}"})
+	@DeleteMapping (path = {"/delete/{id}"})
 	public ResponseEntity<Void> delete(@PathVariable long id){
 		return repository.findById(id).map(record -> {
 			repository.deleteById(id);
